@@ -1,0 +1,107 @@
+<!-- quiz.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kuis Kepuasan Kerja</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .form-group {
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-md navbar-light bg-light">
+    <div class="container">
+      <a class="navbar-brand" href="#">
+        <img src="image/ug.png" alt="Logo" height="30">
+      </a>
+      <span class="navbar-text mx-auto">
+        Transformational Leadership (TL)
+      </span>
+    </div>
+  </nav>
+
+  <div class="container mt-4">
+    <form id="quizForm">
+      <div class="row">
+        <div class="col-md-8 mx-auto">
+          <!-- Container for questions -->
+          <div id="questionsContainer"></div>
+        </div>
+      </div>
+
+      <div class="row mt-3">
+        <div class="col-md-4 mx-auto">
+          <button type="button" class="btn btn-primary btn-block" onclick="calculateScore()">Selesai</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script src="script.js"></script>
+  <script>
+    // Array of questions
+    const questions = [
+      "Saya mengetahui pengaruh pekerjaan ini untuk makna hidup saya. ",
+      "Pekerjaan saya membantu saya memahami diri dengan lebih baik",
+      "Saya menemukan sebuah karir yang bermakna. ",
+      "Pekerjaan saya membantuk saya memahami lingkungan di sekitar saya.  ",
+      "Pekerjaan saya bermanfaat untuk pengembangan diri saya. ",
+      "Saya tahu pekerjaan saya memberikan dampak positif bagi masyarakat luas. ",
+    ];
+
+    // Function to generate question elements
+    function generateQuestions() {
+      const questionsContainer = document.getElementById('questionsContainer');
+
+      questions.forEach((question, index) => {
+        const questionNumber = index + 1;
+
+        // Create question container
+        const questionContainer = document.createElement('div');
+        questionContainer.classList.add('form-group');
+
+        // Create question label
+        const questionLabel = document.createElement('label');
+        questionLabel.textContent = `${questionNumber}. ${question}`;
+        questionContainer.appendChild(questionLabel);
+
+        // Create dropdown for 'Ya' and 'Tidak'
+        const dropdownContainer = document.createElement('div');
+        dropdownContainer.classList.add('custom-select');
+
+        const dropdown = document.createElement('select');
+        dropdown.id = `jawaban${questionNumber}`;
+        dropdown.name = `jawaban${questionNumber}`;
+        dropdown.classList.add('custom-select');
+
+        const optionElement = document.createElement('option');
+        optionElement.value = '5';
+        optionElement.text = 'Ya';
+        dropdown.appendChild(optionElement);
+
+        const optionElement2 = document.createElement('option');
+        optionElement2.value = '0';
+        optionElement2.text = 'Tidak';
+        dropdown.appendChild(optionElement2);
+
+        dropdownContainer.appendChild(dropdown);
+        questionContainer.appendChild(dropdownContainer);
+
+        questionsContainer.appendChild(questionContainer);
+      });
+    }
+
+    // Call the function to generate questions on page load
+    generateQuestions();
+  </script>
+</body>
+</html>

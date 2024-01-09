@@ -1,0 +1,58 @@
+<!-- result.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hasil Kuis</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container mt-5">
+    <div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
+      <div class="card">
+        <div class="card-header text-center">
+          <h2>Hasil Kuis</h2>
+        </div>
+        <div class="card-body">
+          <div id="resultContainer" class="text-center">
+            <!-- Display the result here -->
+          </div>
+
+          <button type="button" class="btn btn-primary mt-3" onclick="goToIndex()">Kembali ke Beranda</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script src="script.js"></script>
+  <script>
+    // Function to retrieve and display the result
+    function displayResult() {
+      const resultContainer = document.getElementById('resultContainer');
+      const nama = localStorage.getItem('nama');
+      const jabatan = localStorage.getItem('jabatan');
+      const score = localStorage.getItem('score');
+
+      resultContainer.innerHTML = `
+        <p class="lead">Nama: ${nama}</p>
+        <p class="lead">Jabatan: ${jabatan}</p>
+        <p class="lead">Skor: ${score}</p>
+      `;
+    }
+
+    // Function to navigate back to index.html
+    function goToIndex() {
+      window.location.href = 'index.html';
+    }
+
+    // Call the function to display the result on page load
+    displayResult();
+  </script>
+</body>
+</html>
